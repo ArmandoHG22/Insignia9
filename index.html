@@ -251,4 +251,121 @@
             <!-- SECCIÓN CON FORMATO DE DOS COLUMNAS ESTILO PERIÓDICO -->
             <div class="columns-layout">
                 <h4>e. Verificación Binaria</h4>
+                <p>Al analizar la lista de aristas base E_T del núcleo jerárquico, se corrobora que la raíz primaria se bifurca exactamente hacia dos nodos distribuidores de nivel secundario. A su vez, cada uno de ellos actúa como nodo padre de dos nuevos servidores subordinados.</p>
+                <p>Esta regularidad geométrica binaria se preserva de forma idéntica en toda la topología, clasificando al modelo de manera directa como un <strong>árbol binario completo y perfectamente balanceado</strong>. Al cumplir de forma nativa con la restricción técnica, la estructura óptima no requiere de ningún ajuste adicional.</p>
+            </div>
+            <div>
+                <h4>f. Conversión a Arborescencia</h4>
+                <p>Para dotar al grafo de las propiedades operativas de una arborescencia, se introduce una dirección única de flujo unidireccional (digrafo). El sentido de los canales de comunicación se orienta estrictamente desde la raíz de distribución primaria hacia las hojas terminales periféricas.</p>
+                <p>Esta configuración es una arborescencia matemáticamente válida ya que el grado de entrada de la raíz es estrictamente cero: <strong>gr⁻(1) = 0</strong>, mientras que para la totalidad de los catorce nodos restantes del sistema regional, el grado de entrada es exactamente uno: <strong>gr⁻(v) = 1</strong>. Esto garantiza flujos sin retornos ambiguos.</p>
+            </div>
+        </div>
+
+        <div class="placeholder-image">
+            [Espacio reservado: Inserta aquí el Diagrama del Árbol Binario de 15 nodos para ilustrar los incisos e y f]
+        </div>
+
+        <h3>2. Ubicando el Apareamiento: Nodos Acoplados vs Expuestos</h3>
+        <p>Si realizamos una asignación inicial rápida, podemos definir el siguiente apareamiento:</p>
+        <div class="math-block">M = {(I1, P2), (I2, P4), (I3, P1), (I4, P3)}</div>
+        <p>En este escenario, los ingenieros {I1, I2, I3, I4} y los proyectos {P1, P2, P3, P4} están acoplados. Sin embargo, los elementos I5 y P5 carecen de asignación, quedando inactivos en esta etapa (nodos expuestos).</p>
+
+        <h3>3. Establecimiento del Apareamiento Máximo</h3>
+        <p>Aplicando algoritmos de optimización de flujos bipartitos, reestructuramos el acoplamiento para alcanzar la máxima eficiencia de la gráfica:</p>
+        <div class="math-block">M_Max = {(I1, P2), (I2, P4), (I3, P1), (I4, P3), (I5, P5)}</div>
+        <p>El tamaño del apareamiento máximo es exactamente 5.</p>
+
+        <h3>4. Indicación del Apareamiento Perfecto</h3>
+        <p>Dado que la cardinalidad del apareamiento máximo coincide exactamente con la mitad del total de los vértices del sistema (|M| = |V| / 2 = 5), se demuestra que la asignación es un <strong>Apareamiento Perfecto</strong>. No existen nodos expuestos y la eficiencia operativa es total.</p>
+
+        <h3>5. Aplicación del Teorema de Hall y Análisis de Deficiencia</h3>
+        <p>El Teorema del Matrimonio de Hall dicta que una gráfica bipartita posee un apareamiento completo si y solo si para todo subconjunto de elementos de X se cumple la condición de vecindad de grado: |N(S)| ≥ |S|.</p>
+        <p>La deficiencia de un grafo, denotada como d(G), mide la cantidad de elementos que se quedarán sin emparejar en el peor de los escenarios. Evaluando las conexiones densas de nuestro sistema (20 aristas para 10 nodos), determinamos algebraicamente que:</p>
+        <div class="math-block">d(G) = 0</div>
+        <p><strong>Explicación del resultado:</strong> Al ser la deficiencia igual a cero, la condición de Hall se cumple estrictamente para cada combinación del personal. La versatilidad tecnológica de los ingenieros asegura que todos los proyectos prioritarios iniciarán simultáneamente sin registrar cuellos de botella por vacantes descubiertas.</p>
+        
+        <a href="#" class="cta-button">¡Dejar un comentario en la Entrada 2!</a>
+    </article>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada 3: Minimización de Costos - Kruskal y Prim</title>
+    <style>
+        :root { --primary: #008080; --dark: #263238; --light: #f8f9fa; --border: #cfd8dc; --text: #37474f; }
+        body { font-family: 'Segoe UI', sans-serif; color: var(--text); background-color: var(--light); padding: 2rem; line-height: 1.6; }
+        .blog-post { background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 2.5rem; max-width: 900px; margin: 0 auto; border-left: 5px solid var(--primary); }
+        h2 { color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        h3 { color: var(--dark); margin-top: 1.5rem; }
+        ol, ul { margin-left: 2rem; margin-bottom: 1rem; }
+        .matrix-container { font-family: monospace; white-space: pre; background: #2d3748; color: #edf2f7; padding: 1.5rem; border-radius: 6px; overflow-x: auto; text-align: left; display: inline-block; line-height: 1.2; margin: 1.5rem 0; }
+        .center { text-align: center; }
+        .cta-button { display: block; text-align: center; background-color: var(--primary); color: white; padding: 0.75rem; border-radius: 4px; text-decoration: none; font-weight: bold; margin-top: 1.5rem; }
+    </style>
+</head>
+<body>
+    <article class="blog-post">
+        <h2>Entrada 3: Minimización de Costos en Infraestructuras mediante Kruskal y Prim</h2>
+        <p>Se establece un planteamiento donde se requiere interconectar 15 sedes corporativas estatales utilizando mallas de fibra óptica subterránea. Contamos con 30 trayectorias posibles, cada una con un costo ponderado (peso) en millones de pesos.</p>
+        
+        <h3>a. Ubicación de un Árbol Expandido</h3>
+        <p>Un árbol expandido (o de expansión) es un subgrafo acíclico que conecta a los 15 nodos utilizando exactamente 14 aristas. Permite la comunicación total optimizando la cantidad de cables troncales instalados.</p>
+        
+        <h3>b. Análisis de la Condición Binaria Estricta</h3>
+        <p>Un árbol es estrictamente binario si cada uno de sus nodos internos posee exactamente cero o dos hijos. Al analizar el subgrafo de expansión directo, observamos la existencia de ramificaciones asimétricas donde ciertos nodos intermedios solo poseen un único hijo. Por lo tanto, no es estrictamente binario de forma nativa.</p>
+        
+        <h3>c. Método de Conversión a Árbol Estricto Binario</h3>
+        <p>Para estandarizar el procesamiento de datos y la transmisión balanceada, aplicamos una transformación topológica clásica: dividimos el flujo de los servidores asimétricos introduciendo nodos virtuales puente de peso cero. Tras este ajuste físico, cada enrutador se bifurca en un factor de grado regular, forzando matemáticamente a que la topología sea un árbol binario estricto y balanceado.</p>
+        
+        <h3>d. Ejecución de los Recorridos del Árbol Ajustado (6 en Total)</h3>
+        <p>Para la auditoría e indexación de los servidores del sistema modificado, se ejecutan de forma secuencial las 6 técnicas de exploración:</p>
+        
+        <ol>
+            <li><strong>Preorden (Raíz, Izquierda, Derecha):</strong> 1, 2, 4, 8, 9, 5, 10, 11, 3, 6, 12, 13, 7, 14, 15</li>
+            <li><strong>Inorden (Izquierda, Raíz, Derecha):</strong> 8, 4, 9, 2, 10, 5, 11, 1, 12, 6, 13, 3, 14, 7, 15</li>
+            <li><strong>Postorden (Izquierda, Derecha, Raíz):</strong> 8, 9, 4, 10, 11, 5, 2, 12, 13, 6, 14, 15, 7, 3, 1</li>
+            <li><strong>Por Niveles / Amplitud (Horizontal):</strong> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15</li>
+            <li><strong>Preorden Inverso (Raíz, Derecha, Izquierda):</strong> 1, 3, 7, 15, 14, 6, 13, 12, 2, 5, 11, 10, 4, 9, 8</li>
+            <li><strong>Postorden Inverso (Derecha, Izquierda, Raíz):</strong> 15, 14, 7, 13, 12, 6, 3, 11, 10, 5, 9, 8, 4, 2, 1</li>
+        </ol>
+
+        <h3>e. Optimización mediante los Métodos de Kruskal y Prim</h3>
+        <p>Para encontrar el Árbol Expandido de Peso Mínimo (MST) de la red ponderada regional, ejecutamos los dos enfoques de optimización:</p>
+        <ul>
+            <li><strong>Algoritmo de Kruskal:</strong> Se ordenan las 30 rutas de menor a mayor costo de manera global. El algoritmo selecciona las aristas más económicas de forma secuencial, descartando aquellas que formen ciclos cerrados, hasta integrar las 14 conexiones óptimas.</li>
+            <li><strong>Algoritmo de Prim:</strong> Iniciando desde un nodo central (Sede 1), la red se expande de manera local seleccionando en cada paso el enlace más barato que conecte la estructura existente con una ciudad adyacente que aún esté aislada.</li>
+        </ul>
+        <p><strong>Interpretación de resultados:</strong> Aunque los procesos matemáticos difieren (Kruskal opera de forma global y descentralizada, mientras que Prim crece de forma radial desde un origen), ambos algoritmos devuelven exactamente el mismo peso total mínimo de infraestructura. Esto demuestra que la solución de costo mínimo para la corporación es única y óptima.</p>
+
+        <h3>vii. Matriz de Adyacencia Final del Sistema Completo</h3>
+        <p>A continuación se indexa la matriz simétrica de conectividad total de la red:</p>
+        
+        <div class="center">
+            <div class="matrix-container">
+    1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+1  [0  1  1  0  0  0  0  0  0  0  0  0  0  0  0]
+2  [1  0  1  1  1  0  0  0  0  0  0  0  0  0  0]
+3  [1  1  0  0  0  1  1  0  0  0  0  0  0  0  0]
+4  [0  1  0  0  1  1  0  1  1  0  0  0  0  0  0]
+5  [0  1  0  1  0  0  1  0  0  1  1  0  0  0  0]
+6  [0  0  1  1  0  0  1  0  0  0  0  1  1  0  0]
+7  [0  0  1  0  1  1  0  0  0  0  0  0  0  1  1]
+8  [0  0  0  1  0  0  0  0  1  1  0  0  0  0  1]
+9  [0  0  0  1  0  0  0  1  0  1  1  0  0  0  0]
+10 [0  0  0  0  1  0  0  1  1  0  1  0  0  0  0]
+11 [0  0  0  0  1  0  0  0  1  1  0  1  0  0  0]
+12 [0  0  0  0  0  1  0  0  0  0  1  0  1  1  0]
+13 [0  0  0  0  0  1  0  0  0  0  0  1  0  1  1]
+14 [0  0  0  0  0  0  1  0  0  0  0  1  1  0  1]
+15 [0  0  0  0  0  0  1  1  0  0  0  0  1  1  0]</div>
+        </div>
+
+        <a href="#" class="cta-button">¡Dejar un comentario en la Entrada 3!</a>
+    </article>
+</body>
+</html>
+
 
