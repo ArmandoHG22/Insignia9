@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio Técnico: Teoría de Grafos Aplicada</title>
+    <title>Insignia 9 Teoría de Gráficas Bipartitas, Ponderadas y
+Apareamientos</title>
     <style>
         /* --- VARIABLES DE DISEÑO --- */
-        :root {
+         :root {
             --primary: #008080; /* Teal / Turquesa */
             --primary-light: #e0f2f1;
             --dark: #263238;
@@ -29,29 +30,41 @@
             line-height: 1.6;
         }
 
+        /* ENCABEZADO CORREGIDO Y CENTRADO PERFECTAMENTE */
         header {
             background-color: var(--dark);
             color: white;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
             border-bottom: 4px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 3rem;
+            margin-bottom: 0.8rem;
             color: #ffffff;
+            width: 100%;
+            text-align: center;
         }
 
         header p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #b0bec5;
+            margin-bottom: 1.2rem;
+            width: 100%;
+            text-align: center;
         }
 
         .author {
-            margin-top: 1rem;
+            font-size: 1.2rem;
             font-weight: bold;
             color: var(--primary-light);
+            width: 100%;
+            text-align: center;
         }
 
         main {
@@ -146,16 +159,24 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- CONTENEDOR DE DIAGRAMAS (RESERVADO) --- */
-        .placeholder-image {
-            background-color: #eceff1;
-            border: 2px dashed #b0bec5;
+        /* --- SECCIÓN DE COMENTARIOS FUNCIONAL --- */
+        .comment-section {
+            margin-top: 2rem;
+            background-color: var(--light);
+            padding: 1.5rem;
             border-radius: 6px;
-            padding: 2rem;
-            text-align: center;
-            color: #78909c;
-            margin: 1.5rem 0;
-            font-style: italic;
+            border: 1px solid var(--border);
+        }
+
+        .comment-input {
+            width: 100%;
+            height: 80px;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            resize: none;
+            font-family: inherit;
+            margin-bottom: 0.5rem;
         }
 
         /* --- BOTÓN COMENTARIOS / CTA --- */
@@ -168,6 +189,8 @@
             text-decoration: none;
             font-weight: bold;
             margin-top: 1.5rem;
+            cursor: pointer;
+            border: none;
             transition: background 0.3s ease;
         }
 
