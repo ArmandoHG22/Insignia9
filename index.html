@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Técnico: Teoría de Grafos Aplicada</title>
+    <style>
+        /* --- VARIABLES DE DISEÑO --- */
+        :root {
+            --primary: #008080; /* Teal / Turquesa */
+            --primary-light: #e0f2f1;
+            --dark: #263238;
+            --light: #f8f9fa;
+            --border: #cfd8dc;
+            --text: #37474f;
+        }
+
+        /* --- ESTILOS GENERALES --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid var(--primary);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #b0bec5;
+        }
+
+        .author {
+            margin-top: 1rem;
+            font-weight: bold;
+            color: var(--primary-light);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* --- TARJETAS / POSTS DEL BLOG --- */
+        .blog-post {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border-left: 5px solid var(--primary);
+        }
+
+        .blog-post h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: var(--dark);
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.3rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        /* --- FORMATO ESTILO PERIÓDICO (COLUMNAS) --- */
+        .columns-layout {
+            column-count: 2;
+            column-gap: 2rem;
+            column-rule: 1px solid var(--border);
+            margin: 1.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .columns-layout {
+                column-count: 1;
+                column-rule: none;
+            }
+        }
+
+        /* --- MATEMÁTICAS Y BLOQUES DE CÓDIGO --- */
+        .math-block {
+            background-color: var(--light);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            text-align: center;
+            margin: 1.5rem 0;
+            color: var(--dark);
+            overflow-x: auto;
+        }
+
+        .matrix-container {
+            font-family: monospace;
+            white-space: pre;
+            background: #2d3748;
+            color: #edf2f7;
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            text-align: left;
+            display: inline-block;
+            line-height: 1.2;
+        }
+
+        .center {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        /* --- LISTAS --- */
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- CONTENEDOR DE DIAGRAMAS (RESERVADO) --- */
+        .placeholder-image {
+            background-color: #eceff1;
+            border: 2px dashed #b0bec5;
+            border-radius: 6px;
+            padding: 2rem;
+            text-align: center;
+            color: #78909c;
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+
+        /* --- BOTÓN COMENTARIOS / CTA --- */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #006666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--dark);
+            color: #cfd8dc;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Insignia 4: Teoría de Grafos y Aplicaciones</h1>
+        <p>Modelado Matemático de Infraestructuras y Sistemas Avanzados</p>
+        <div class="author">Por: Armando Hernández González</div>
+    </header>
+
+    <main>
+
+        <!-- ==========================================
+             POST 1: CONECTIVIDAD Y TEOREMA DE WHITNEY
+             ========================================== -->
+        <article class="blog-post">
+            <h2>Resiliencia de Redes: Cómo la Teoría de Grafos Protege la Fibra Óptica</h2>
+            
+            <h3>1. Arquitectura de nuestra Red Regional (15 Nodos, 30 Enlaces)</h3>
+            <p>Imagina que estás a cargo de la conectividad de fibra óptica de las 15 ciudades más importantes de una región. Si un cable se corta por un accidente de construcción, ¿la red entera colapsa o el tráfico de datos encuentra una ruta alterna? En esta entrada, analizaremos matemáticamente la tolerancia a fallos mediante los parámetros de conectividad.</p>
+            
+            <div class="math-block">
+                V = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}<br>
+
+                |E| = 30 aristas de alta disponibilidad
+            </div>
+
+            <h3>2. ¿Qué es la Conectividad de Línea?</h3>
+            <p>En la teoría de grafos, la conectividad de línea —denotada por la letra griega <strong>λ (Lambda)</strong>— representa el número mínimo de enlaces (aristas) que tendríamos que cortar para fragmentar la red en dos o más partes aisladas.</p>
+            <p>En nuestra infraestructura real, hemos diseñado un cuello de botella estratégico entre dos subregiones (Norte y Sur). Tras un análisis topológico, descubrimos que si saboteamos simultáneamente los enlaces troncales (6, 9) y (7, 8), la red se parte a la mitad. Por lo tanto:</p>
+            
+            <div class="math-block">λ(G) = 2</div>
+
+            <p><strong>Interpretación práctica:</strong> Nuestra red corporativa regional cuenta con una tolerancia a fallos de nivel 1. Puede resistir de manera segura la pérdida de cualquier cable de fibra óptica en cualquier parte del país; sin embargo, un segundo fallo simultáneo en zonas críticas incomunicará por completo las regiones.</p>
+
+            <h3>3. Justificación de una Red 2-Arista Conexa</h3>
+            <p>Decimos formalmente que una gráfica es <strong>k-arista conexa</strong> si su conectividad de línea es mayor o igual a "k". Dado que nuestro valor de Lambda es exactamente 2, nuestra red clasifica como 2-arista conexa. Esto significa matemáticamente que no importa cuál enlace individual falle, la red garantiza al 100% que existirá al menos un camino de respaldo para que los paquetes de datos lleguen a su destino.</p>
+
+            <h3>4. El Teorema de Whitney aplicado a la Ciberseguridad</h3>
+            <p>El matemático Hassler Whitney demostró un teorema fundamental que define el orden de vulnerabilidad de cualquier sistema en red:</p>
+            
+            <div class="math-block">κ(G) ≤ λ(G) ≤ δ(G)</div>
+
+            <p>Sustituyendo los valores cuantitativos del planteamiento, donde la conectividad de vértices es κ = 2, la de línea es λ = 2, y el grado mínimo del nodo más aislado es δ = 4, obtenemos de forma exacta:</p>
+            
+            <div class="math-block">2 ≤ 2 ≤ 4</div>
+
+            <p><strong>Análisis final:</strong> El teorema se cumple perfectamente. Para un ingeniero de infraestructura, esto demuestra que siempre es mucho más eficiente proteger de forma prioritaria los enlaces troncales centrales o los servidores puente (que requieren solo 2 puntos de fallo para tirar la red) que enfocarse de forma aislada en la periferia de la red (que requiere 4 puntos de fallo).</p>
+            
+            <div class="center">
+                <a href="#" class="cta-button">¡Deja tus dudas en los comentarios!</a>
+            </div>
+        </article>
+
+
+        <!-- ==========================================
+             POST 2: GRÁFICAS BIPARTITAS Y HIERARCHY
+             ========================================== -->
+        <article class="blog-post">
+            <h2>Asignación Inteligente de Personal: Algoritmos de Acoplamiento y el Teorema de Hall</h2>
+            
+            <h3>1. El Problema de las 5 Vacantes Críticas</h3>
+            <p>¿Cómo optimizan las grandes plataformas logísticas la asignación de repartidores a pedidos, o los departamentos de Recursos Humanos la asignación de vacantes a candidatos calificados? La respuesta está en las gráficas bipartitas y los problemas de apareamiento (matching).</p>
+            <p>Imagina una empresa tecnológica regional que necesita asignar 5 ingenieros especialistas (Conjunto X) a 5 proyectos tecnológicos prioritarios (Conjunto Y), contando con un total de 20 enlaces de compatibilidad o aptitud (aristas).</p>
+
+            <!-- SECCIÓN CON FORMATO DE DOS COLUMNAS ESTILO PERIÓDICO -->
+            <div class="columns-layout">
+                <h4>e. Verificación Binaria</h4>
