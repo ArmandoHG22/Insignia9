@@ -265,94 +265,78 @@ Apareamientos</title>
              POST 2: GRÁFICAS BIPARTITAS Y HIERARCHY
              ========================================== -->
         <article class="blog-post">
-            <h2>Entrada 2: Asignación Inteligente de Personal: Algoritmos de Acoplamiento y el Teorema de Hall</h2>
-            
-            <h3>1. El Problema de las 5 Vacantes Críticas</h3>
-            <p>¿Cómo optimizan las grandes plataformas logísticas la asignación de repartidores a pedidos, o los departamentos de Recursos Humanos la asignación de vacantes a candidatos calificados? La respuesta está en las gráficas bipartitas y los problemas de apareamiento (matching).</p>
-            <p>Imagina una empresa tecnológica regional que necesita asignar 5 ingenieros especialistas (Conjunto X) a 5 proyectos tecnológicos prioritarios (Conjunto Y), contando con un total de 20 enlaces de compatibilidad o aptitud (aristas).</p>
+        <h2>Entrada 2: Asignación Inteligente de Personal mediante Algoritmos de Acoplamiento y el Teorema de Hall</h2>
+        
+        <h3>a. Explicación del problema, la gráfica, nodos y aristas</h3>
+        <p><strong>El problema:</strong> Una empresa de desarrollo de software en México requiere asignar un equipo de 5 Ingenieros Especialistas a 5 Proyectos Tecnológicos Críticos de manera simultánea. Debido a los diferentes perfiles técnicos, no todos los ingenieros están calificados para desarrollar cualquier proyecto. Se busca encontrar una asignación óptima e individualizada.</p>
+        
+        <p><strong>La gráfica bipartita (G = (V, E)):</strong> El sistema se modela matemáticamente usando una gráfica bipartita donde el conjunto total de vértices se divide en dos subconjuntos disjuntos: Ingenieros ($X$) y Proyectos ($Y$), tales que no existen enlaces entre elementos del mismo grupo.</p>
+        
+        <ul>
+            <li><strong>Conjunto disjunto de Ingenieros (X):</strong> $X = \{I_1, I_2, I_3, I_4, I_5\}$ (5 nodos)</li>
+            <li><strong>Conjunto disjunto de Proyectos (Y):</strong> $Y = \{P_1, P_2, P_3, P_4, P_5\}$ (5 nodos)</li>
+            <li><strong>Total de Nodos:</strong> $V = X \cup Y$ (10 nodos en total)</li>
+            <li><strong>Aristas (E - Enlaces de Compatibilidad):</strong> Un total estricto de 20 aristas que representan la aptitud técnica del ingeniero para ese proyecto específico.</li>
+        </ul>
 
-            <!-- SECCIÓN CON FORMATO DE DOS COLUMNAS ESTILO PERIÓDICO -->
-            <div class="columns-layout">
-                <h4>e. Verificación Binaria</h4>
-                <p>Al analizar la lista de aristas base E_T del núcleo jerárquico, se corrobora que la raíz primaria se bifurca exactamente hacia dos nodos distribuidores de nivel secundario. A su vez, cada uno de ellos actúa como nodo padre de dos nuevos servidores subordinados.</p>
-                <p>Esta regularidad geométrica binaria se preserva de forma idéntica en toda la topología, clasificando al modelo de manera directa como un <strong>árbol binario completo y perfectamente balanceado</strong>. Al cumplir de forma nativa con la restricción técnica, la estructura óptima no requiere de ningún ajuste adicional.</p>
-            </div>
-            <div>
-                <h4>f. Conversión a Arborescencia</h4>
-                <p>Para dotar al grafo de las propiedades operativas de una arborescencia, se introduce una dirección única de flujo unidireccional (digrafo). El sentido de los canales de comunicación se orienta estrictamente desde la raíz de distribución primaria hacia las hojas terminales periféricas.</p>
-                <p>Esta configuración es una arborescencia matemáticamente válida ya que el grado de entrada de la raíz es estrictamente cero: <strong>gr⁻(1) = 0</strong>, mientras que para la totalidad de los catorce nodos restantes del sistema regional, el grado de entrada es exactamente uno: <strong>gr⁻(v) = 1</strong>. Esto garantiza flujos sin retornos ambiguos.</p>
-            </div>
+        <div class="math-block">
+            E = { (I1,P1), (I1,P2), (I1,P3), (I1,P4), (I2,P1), (I2,P2), (I2,P4), (I2,P5), (I3,P1), (I3,P3),<br>
+                  (I3,P4), (I3,P5), (I4,P2), (I4,P3), (I4,P4), (I4,P5), (I5,P1), (I5,P2), (I5,P3), (I5,P5) }
         </div>
 
-                <!-- DIAGRAMA EN SVG VECTORIAL GENERADO AUTOMÁTICAMENTE (DISEÑO TIKZ TRADUCIDO A WEB) -->
-        <div class="center" style="margin: 2rem 0; background: #ffffff; padding: 1.5rem; border: 1px solid var(--border); border-radius: 8px;">
-            <h4 style="margin-bottom: 1rem; text-align: center; color: var(--primary);">Distribución Topológica del Árbol de Expansión</h4>
-            <svg viewBox="0 0 800 320" width="100%" height="100%" style="max-width: 800px; display: block; margin: 0 auto;">
-                <g stroke="#008080" stroke-width="2">
-                    <!-- Nivel 0 a 1 -->
-                    <line x1="400" y1="30" x2="200" y2="100" />
-                    <line x1="400" y1="30" x2="600" y2="100" />
-                    <!-- Nivel 1 a 2 -->
-                    <line x1="200" y1="100" x2="100" y2="170" />
-                    <line x1="200" y1="100" x2="300" y2="170" />
-                    <line x1="600" y1="100" x2="500" y2="170" />
-                    <line x1="600" y1="100" x2="700" y2="170" />
-                    <!-- Nivel 2 a 3 -->
-                    <line x1="100" y1="170" x2="60" y2="250" />
-                    <line x1="100" y1="170" x2="140" y2="250" />
-                    <line x1="300" y1="170" x2="260" y2="250" />
-                    <line x1="300" y1="170" x2="340" y2="250" />
-                    <line x1="500" y1="170" x2="460" y2="250" />
-                    <line x1="500" y1="170" x2="540" y2="250" />
-                    <line x1="700" y1="170" x2="660" y2="250" />
-                    <line x1="700" y1="170" x2="740" y2="250" />
+        <!-- RECURSO VISUAL: MODELADO GRÁFICO INTERACTIVO SVG -->
+        <div class="graph-container">
+            <h4 style="margin-bottom:1rem;">Modelado Visual de la Gráfica Bipartita (10 Nodos, 20 Aristas)</h4>
+            <svg viewBox="0 0 600 350" width="100%" height="100%" style="max-width: 600px;">
+                <!-- ARISTAS COMPATIBLES -->
+                <g stroke="#b2dfdb" stroke-width="1.5" opacity="0.7">
+                    <!-- I1 --> <line x1="150" y1="50" x2="450" y2="50" /><line x1="150" y1="50" x2="450" y2="120" /><line x1="150" y1="50" x2="450" y2="190" /><line x1="150" y1="50" x2="450" y2="260" />
+                    <!-- I2 --> <line x1="150" y1="120" x2="450" y2="50" /><line x1="150" y1="120" x2="450" y2="120" /><line x1="150" y1="120" x2="450" y2="260" /><line x1="150" y1="120" x2="450" y2="330" />
+                    <!-- I3 --> <line x1="150" y1="190" x2="450" y2="50" /><line x1="150" y1="190" x2="450" y2="190" /><line x1="150" y1="190" x2="450" y2="260" /><line x1="150" y1="190" x2="450" y2="330" />
+                    <!-- I4 --> <line x1="150" y1="260" x2="450" y2="120" /><line x1="150" y1="260" x2="450" y2="190" /><line x1="150" y1="260" x2="450" y2="260" /><line x1="150" y1="260" x2="450" y2="330" />
+                    <!-- I5 --> <line x1="150" y1="330" x2="450" y2="50" /><line x1="150" y1="330" x2="450" y2="120" /><line x1="150" y1="330" x2="450" y2="190" /><line x1="150" y1="330" x2="450" y2="330" />
                 </g>
-                <!-- NODOS -->
-                <g font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" dominant-baseline="central">
-                    <!-- Raíz -->
-                    <circle cx="400" cy="30" r="18" fill="#e0f2f1" stroke="#008080" stroke-width="2"/> <text x="400" y="30" fill="#263238">1</text>
-                    <!-- Nivel 1 -->
-                    <circle cx="200" cy="100" r="18" fill="#e0f2f1" stroke="#008080" stroke-width="2"/> <text x="200" y="100" fill="#263238">2</text>
-                    <circle cx="600" cy="100" r="18" fill="#e0f2f1" stroke="#008080" stroke-width="2"/> <text x="600" y="100" fill="#263238">3</text>
-                    <!-- Nivel 2 -->
-                    <circle cx="100" cy="170" r="18" fill="#e0f2f1" stroke="#008080" stroke-width="2"/> <text x="100" y="170" fill="#263238">4</text>
-                    <circle cx="300" cy="170" r="18" fill="#e0f2f1" stroke="#008080" stroke-width="2"/> <text x="300" y="170" fill="#263238">5</text>
-                    <circle cx="500" cy="170" r="18" fill="#e0f2f1" stroke="#008080" stroke-width="2"/> <text x="500" y="170" fill="#263238">6</text>
-                    <circle cx="700" cy="170" r="18" fill="#e0f2f1" stroke="#008080" stroke-width="2"/> <text x="700" y="170" fill="#263238">7</text>
-                    <!-- Nivel 3 -->
-                    <circle cx="60" cy="250" r="18" fill="#e0f2f1" stroke="#008080" stroke-width="2"/> <text x="60" y="250" fill="#263238">8</text>
-                    <circle cx="140" cy="250" r="18" fill="#e0f2f1" stroke="#008080" stroke-width="2"/> <text x="140" y="250" fill="#263238">9</text>
-                    <circle cx="260" cy="250" r="18" fill="#e0f2f1" stroke="#008080" stroke-width="2"/> <text x="260" y="250" fill="#263238">10</text>
-                    <circle cx="340" cy="250" r="18" fill="#e0f2f1" stroke="#008080" stroke-width="2"/> <text x="340" y="250" fill="#263238">11</text>
-                    <circle cx="460" cy="250" r="18" fill="#e0f2f1" stroke="#008080" stroke-width="2"/> <text x="460" y="250" fill="#263238">12</text>
-                    <circle cx="540" cy="250" r="18" fill="#e0f2f1" stroke="#008080" stroke-width="2"/> <text x="540" y="250" fill="#263238">13</text>
-                    <circle cx="660" cy="250" r="18" fill="#e0f2f1" stroke="#008080" stroke-width="2"/> <text x="660" y="250" fill="#263238">14</text>
-                    <circle cx="740" cy="250" r="18" fill="#e0f2f1" stroke="#008080" stroke-width="2"/> <text x="740" y="250" fill="#263238">15</text>
+                <!-- NODOS CONJUNTO X (INGENIEROS) -->
+                <g fill="#e0f2f1" stroke="#008080" stroke-width="2">
+                    <circle cx="150" cy="50" r="18" /><circle cx="150" cy="120" r="18" /><circle cx="150" cy="190" r="18" /><circle cx="150" cy="260" r="18" /><circle cx="150" cy="330" r="18" />
+                </g>
+                <!-- NODOS CONJUNTO Y (PROYECTOS) -->
+                <g fill="#fff3e0" stroke="#ff9800" stroke-width="2">
+                    <circle cx="450" cy="50" r="18" /><circle cx="450" cy="120" r="18" /><circle cx="450" cy="190" r="18" /><circle cx="450" cy="260" r="18" /><circle cx="450" cy="330" r="18" />
+                </g>
+                <!-- TEXTO EN NODOS -->
+                <g font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" dominant-baseline="central" fill="#263238">
+                    <text x="150" y="50">I1</text><text x="150" y="120">I2</text><text x="150" y="190">I3</text><text x="150" y="260">I4</text><text x="150" y="330">I5</text>
+                    <text x="450" y="50">P1</text><text x="450" y="120">P2</text><text x="450" y="190">P3</text><text x="450" y="260">P4</text><text x="450" y="330">P5</text>
                 </g>
             </svg>
         </div>
 
+        <h3>b. Ubica un apareamiento, indicando los nodos expuestos y acoplados</h3>
+        <p>Un <strong>apareamiento (M)</strong> es un subconjunto de aristas elegidas de tal manera que ninguna arista del conjunto comparte un vértice común. Proponemos el siguiente apareamiento inicial no óptimo:</p>
+        <div class="math-block">M = { (I_1, P_1), (I_2, P_2), (I_3, P_3), (I_4, P_4) }</div>
+        <ul>
+            <li><strong>Nodos acoplados (Matched):</strong> Son aquellos vértices que ya poseen una arista asignada dentro del apareamiento $M$. 
+                <br><em>Nodos acoplados:</em> $\{I_1, I_2, I_3, I_4, P_1, P_2, P_3, P_4\}$
+            </li>
+            <li><strong>Nodos expuestos (Unmatched):</strong> Son aquellos vértices libres que no forman parte de ningún enlace en el conjunto $M$. 
+                <br><em>Nodos expuestos:</em> $\{I_5, P_5\}$
+            </li>
+        </ul>
 
-        <h3>2. Ubicando el Apareamiento: Nodos Acoplados vs Expuestos</h3>
-        <p>Si realizamos una asignación inicial rápida, podemos definir el siguiente apareamiento:</p>
-        <div class="math-block">M = {(I1, P2), (I2, P4), (I3, P1), (I4, P3)}</div>
-        <p>En este escenario, los ingenieros {I1, I2, I3, I4} y los proyectos {P1, P2, P3, P4} están acoplados. Sin embargo, los elementos I5 y P5 carecen de asignación, quedando inactivos en esta etapa (nodos expuestos).</p>
+        <h3>c. Establece el apareamiento máximo y su tamaño</h3>
+        <p>El <strong>apareamiento máximo</strong> es el conjunto independiente de aristas que contiene la mayor cantidad posible de elementos para la estructura dada. Al aplicar un camino de aumento desde los nodos expuestos hacia el resto de la red, obtenemos la optimización absoluta:</p>
+        <div class="math-block">M_{max} = { (I_1, P_1), (I_2, P_2), (I_3, P_4), (I_4, P_3), (I_5, P_5) }</div>
+        <p><strong>Tamaño del apareamiento máximo:</strong> El número de aristas seleccionadas en el conjunto es estrictamente <strong>|M_{max}| = 5</strong>.</p>
 
-        <h3>3. Establecimiento del Apareamiento Máximo</h3>
-        <p>Aplicando algoritmos de optimización de flujos bipartitos, reestructuramos el acoplamiento para alcanzar la máxima eficiencia de la gráfica:</p>
-        <div class="math-block">M_Max = {(I1, P2), (I2, P4), (I3, P1), (I4, P3), (I5, P5)}</div>
-        <p>El tamaño del apareamiento máximo es exactamente 5.</p>
+        <h3>d. Indica el apareamiento perfecto</h3>
+        <p>Un apareamiento es <strong>perfecto</strong> si cubre de forma absoluta a todos los vértices de la gráfica (es decir, ningún nodo se queda expuesto). Debido a que nuestra gráfica bipartita cuenta con un total de 10 vértices, y nuestro apareamiento máximo utiliza 5 aristas independientes que enlazan de forma exacta a los 10 nodos sin repetir ninguno, el conjunto <strong>$M_{max}$ corresponde formalmente a un Apareamiento Perfecto</strong>.</p>
 
-        <h3>4. Indicación del Apareamiento Perfecto</h3>
-        <p>Dado que la cardinalidad del apareamiento máximo coincide exactamente con la mitad del total de los vértices del sistema (|M| = |V| / 2 = 5), se demuestra que la asignación es un <strong>Apareamiento Perfecto</strong>. No existen nodos expuestos y la eficiencia operativa es total.</p>
-
-        <h3>5. Aplicación del Teorema de Hall y Análisis de Deficiencia</h3>
-        <p>El Teorema del Matrimonio de Hall dicta que una gráfica bipartita posee un apareamiento completo si y solo si para todo subconjunto de elementos de X se cumple la condición de vecindad de grado: |N(S)| ≥ |S|.</p>
-        <p>La deficiencia de un grafo, denotada como d(G), mide la cantidad de elementos que se quedarán sin emparejar en el peor de los escenarios. Evaluando las conexiones densas de nuestro sistema (20 aristas para 10 nodos), determinamos algebraicamente que:</p>
-        <div class="math-block">d(G) = 0</div>
-        <p><strong>Explicación del resultado:</strong> Al ser la deficiencia igual a cero, la condición de Hall se cumple estrictamente para cada combinación del personal. La versatilidad tecnológica de los ingenieros asegura que todos los proyectos prioritarios iniciarán simultáneamente sin registrar cuellos de botella por vacantes descubiertas.</p>
+        <h3>e. Aplicación del Teorema de Hall y análisis de Deficiencia</h3>
+        <p>El <strong>Teorema de Hall</strong> (o condición del matrimonio) establece que una gráfica bipartita posee un apareamiento completo que cubre a $X$ si y solo si para cada subconjunto de vértices $S \subseteq X$, el tamaño de su vecindad de conexiones es igual o mayor al tamaño del grupo: $|N(S)| \geq |S|$.</p>
         
-        <a href="#" class="cta-button">¡Dejar un comentario en la Entrada 2!</a>
+        <p>Para fundamentar matemáticamente la existencia de la asignación completa, calculamos la <strong>deficiencia de la gráfica, denotada por d(G)</strong>, la cual mide el grado de escasez de emparejamiento mediante la fórmula $d(G) = \max (|S| - |N(S)|)$. Tras evaluar las combinaciones del sistema de los 5 ingenieros con sus 20 líneas de competencia, encontramos:</p>
+        <div class="math-block">d(G) = 0</div>
     </article>
 </body>
 </html>
@@ -376,62 +360,79 @@ Apareamientos</title>
 </head>
 <body>
     <article class="blog-post">
-        <h2>Entrada 3: Minimización de Costos en Infraestructuras mediante Kruskal y Prim</h2>
-        <p>Se establece un planteamiento donde se requiere interconectar 15 sedes corporativas estatales utilizando mallas de fibra óptica subterránea. Contamos con 30 trayectorias posibles, cada una con un costo ponderado (peso) en millones de pesos.</p>
+        <h2>Entrada 3: Optimización de Infraestructuras Ponderadas y Algoritmos de Exploración Estructural</h2>
         
-        <h3>a. Ubicación de un Árbol Expandido</h3>
-        <p>Un árbol expandido (o de expansión) es un subgrafo acíclico que conecta a los 15 nodos utilizando exactamente 14 aristas. Permite la comunicación total optimizando la cantidad de cables troncales instalados.</p>
-        
-        <h3>b. Análisis de la Condición Binaria Estricta</h3>
-        <p>Un árbol es estrictamente binario si cada uno de sus nodos internos posee exactamente cero o dos hijos. Al analizar el subgrafo de expansión directo, observamos la existencia de ramificaciones asimétricas donde ciertos nodos intermedios solo poseen un único hijo. Por lo tanto, no es estrictamente binario de forma nativa.</p>
-        
-        <h3>c. Método de Conversión a Árbol Estricto Binario</h3>
-        <p>Para estandarizar el procesamiento de datos y la transmisión balanceada, aplicamos una transformación topológica clásica: dividimos el flujo de los servidores asimétricos introduciendo nodos virtuales puente de peso cero. Tras este ajuste físico, cada enrutador se bifurca en un factor de grado regular, forzando matemáticamente a que la topología sea un árbol binario estricto y balanceado.</p>
-        
-        <h3>d. Ejecución de los Recorridos del Árbol Ajustado (6 en Total)</h3>
-        <p>Para la auditoría e indexación de los servidores del sistema modificado, se ejecutan de forma secuencial las 6 técnicas de exploración:</p>
-        
-        <ol>
-            <li><strong>Preorden (Raíz, Izquierda, Derecha):</strong> 1, 2, 4, 8, 9, 5, 10, 11, 3, 6, 12, 13, 7, 14, 15</li>
-            <li><strong>Inorden (Izquierda, Raíz, Derecha):</strong> 8, 4, 9, 2, 10, 5, 11, 1, 12, 6, 13, 3, 14, 7, 15</li>
-            <li><strong>Postorden (Izquierda, Derecha, Raíz):</strong> 8, 9, 4, 10, 11, 5, 2, 12, 13, 6, 14, 15, 7, 3, 1</li>
-            <li><strong>Por Niveles / Amplitud (Horizontal):</strong> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15</li>
-            <li><strong>Preorden Inverso (Raíz, Derecha, Izquierda):</strong> 1, 3, 7, 15, 14, 6, 13, 12, 2, 5, 11, 10, 4, 9, 8</li>
-            <li><strong>Postorden Inverso (Derecha, Izquierda, Raíz):</strong> 15, 14, 7, 13, 12, 6, 3, 11, 10, 5, 9, 8, 4, 2, 1</li>
-        </ol>
+        <p><strong>Planteamiento de la Gráfica Ponderada:</strong> Se modela el despliegue de una red troncal de fibra óptica interestatal para conectar 15 corporativos regionales (Nodos del 1 al 15). Se cotizan exactamente 30 trayectorias factibles (Aristas), cada una con un peso $W$ asociado que representa el costo de instalación en millones de pesos.</p>
 
-        <h3>e. Optimización mediante los Métodos de Kruskal y Prim</h3>
-        <p>Para encontrar el Árbol Expandido de Peso Mínimo (MST) de la red ponderada regional, ejecutamos los dos enfoques de optimización:</p>
-        <ul>
-            <li><strong>Algoritmo de Kruskal:</strong> Se ordenan las 30 rutas de menor a mayor costo de manera global. El algoritmo selecciona las aristas más económicas de forma secuencial, descartando aquellas que formen ciclos cerrados, hasta integrar las 14 conexiones óptimas.</li>
-            <li><strong>Algoritmo de Prim:</strong> Iniciando desde un nodo central (Sede 1), la red se expande de manera local seleccionando en cada paso el enlace más barato que conecte la estructura existente con una ciudad adyacente que aún esté aislada.</li>
-        </ul>
-        <p><strong>Interpretación de resultados:</strong> Aunque los procesos matemáticos difieren (Kruskal opera de forma global y descentralizada, mientras que Prim crece de forma radial desde un origen), ambos algoritmos devuelven exactamente el mismo peso total mínimo de infraestructura. Esto demuestra que la solución de costo mínimo para la corporación es única y óptima.</p>
-
-        <h3>vii. Matriz de Adyacencia Final del Sistema Completo</h3>
-        <p>A continuación se indexa la matriz simétrica de conectividad total de la red:</p>
+        <h3>a. Ubica un árbol expandido</h3>
+        <p>Un <strong>árbol expandido (o de expansión)</strong> es un subgrafo que contiene a los 15 vértices de la gráfica original, garantizando la conectividad total del sistema mediante exactamente $V - 1 = 14$ aristas y libre de circuitos cerrados (ciclos). Seleccionamos un árbol de expansión inicial $T_1$ desconectando los 16 enlaces redundantes más costosos:</p>
         
-        <div class="center">
-            <div class="matrix-container">
-    1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
-1  [0  1  1  0  0  0  0  0  0  0  0  0  0  0  0]
-2  [1  0  1  1  1  0  0  0  0  0  0  0  0  0  0]
-3  [1  1  0  0  0  1  1  0  0  0  0  0  0  0  0]
-4  [0  1  0  0  1  1  0  1  1  0  0  0  0  0  0]
-5  [0  1  0  1  0  0  1  0  0  1  1  0  0  0  0]
-6  [0  0  1  1  0  0  1  0  0  0  0  1  1  0  0]
-7  [0  0  1  0  1  1  0  0  0  0  0  0  0  1  1]
-8  [0  0  0  1  0  0  0  0  1  1  0  0  0  0  1]
-9  [0  0  0  1  0  0  0  1  0  1  1  0  0  0  0]
-10 [0  0  0  0  1  0  0  1  1  0  1  0  0  0  0]
-11 [0  0  0  0  1  0  0  0  1  1  0  1  0  0  0]
-12 [0  0  0  0  0  1  0  0  0  0  1  0  1  1  0]
-13 [0  0  0  0  0  1  0  0  0  0  0  1  0  1  1]
-14 [0  0  0  0  0  0  1  0  0  0  0  1  1  0  1]
-15 [0  0  0  0  0  0  1  1  0  0  0  0  1  1  0]</div>
+        <div class="math-block" style="text-align: center;">
+            E_{T1} = { (1,2), (1,3), (2,4), (2,5), (3,6), (4,7), (4,8), (5,9), (6,10), (6,11), (7,12), (8,13), (9,14), (10,15) }
         </div>
 
-        <a href="#" class="cta-button">¡Dejar un comentario en la Entrada 3!</a>
+        <h3>b. Analiza si es estrictamente binario revisando sus consideraciones</h3>
+        <p><strong>Consideraciones teóricas:</strong> Un árbol enraizado es <em>estrictamente binario</em> si y solo si cada uno de sus nodos internos (padres) posee de manera regular <strong>exactamente dos hijos</strong>. Los nodos terminales (hojas) poseen cero hijos.</p>
+        <p><strong>Análisis de conectividad de $T_1$:</strong> Evaluando el grado de ramificación de la estructura elegida, observamos las siguientes inconsistencias:</p>
+        <ul>
+            <li>El nodo 3 es padre de un solo hijo (el nodo 6).</li>
+            <li>El nodo 5 es padre de un solo hijo (el nodo 9).</li>
+            <li>Los nodos internos 7, 8, 9 y 10 actúan como repetidores lineales con un único hijo descendiente cada uno.</li>
+        </ul>
+        <p><strong>Conclusión:</strong> Al registrar múltiples nodos con grado de salida igual a 1, el árbol expandido inicial <strong>no es estrictamente binario</strong>.</p>
+
+        <h3>c. Conversión a un árbol estrictamente binario aplicando el método de expansión</h3>
+        <p>Para corregir la asimetría y cumplir con las condiciones de un árbol binario estricto, aplicamos la técnica clásica de reestructuración topológica: introducemos nodos virtuales de acoplamiento y redistribuimos los enlaces físicos de tal manera que cada bifurcación secundaria sea regular.</p>
+        
+        <p>Estableciendo al Nodo 1 como la raíz troncal principal, la nueva lista de conexiones optimizada da lugar a una estructura perfectamente balanceada de 15 nodos y 14 aristas:</p>
+        <div class="math-block" style="text-align: center;">
+            E_{Binario} = { (1,2), (1,3), (2,4), (2,5), (3,6), (3,7), (4,8), (4,9), (5,10), (5,11), (6,12), (6,13), (7,14), (7,15) }
+        </div>
+
+        <p><strong>Justificación de cumplimiento:</strong> Se verifica que la raíz (1) se divide en dos ramas (2 y 3). Los nodos del segundo nivel (2, 3) se bifurcan en dos ramas cada uno, y los nodos del tercer nivel (4, 5, 6, 7) alimentan exactamente a pares de nodos terminales. Como todos los nodos internos poseen estrictamente dos hijos y las hojas poseen cero, el árbol está plenamente justificado como binario estricto.</p>
+
+        <!-- RECURSO VISUAL COMPILADO DIRECTAMENTE EN CÓDIGO WEB -->
+        <div class="graph-container">
+            <h4>Estructura del Árbol Estrictamente Binario Balanceado resultante</h4>
+            <svg viewBox="0 0 700 260" width="100%" height="100%" style="max-width: 700px; margin-top:1rem;">
+                <g stroke="#008080" stroke-width="2">
+                    <line x1="350" y1="25" x2="175" y2="85" /><line x1="350" y1="25" x2="525" y2="85" />
+                    <line x1="175" y1="85" x2="90" y2="145" /><line x1="175" y1="85" x2="260" y2="145" />
+                    <line x1="525" y1="85" x2="440" y2="145" /><line x1="525" y1="85" x2="610" y2="145" />
+                    <line x1="90" y1="145" x2="50" y2="215" /><line x1="90" y1="145" x2="130" y2="215" />
+                    <line x1="260" y1="145" x2="220" y2="215" /><line x1="260" y1="145" x2="300" y2="215" />
+                    <line x1="440" y1="145" x2="400" y2="215" /><line x1="440" y1="145" x2="480" y2="215" />
+                    <line x1="610" y1="145" x2="570" y2="215" /><line x1="610" y1="145" x2="650" y2="215" />
+                </g>
+                <g fill="#e0f2f1" stroke="#008080" stroke-width="2" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle" dominant-baseline="central" fill-opacity="1">
+                    <circle cx="350" cy="25" r="15" /><text x="350" y="25" fill="#263238">1</text>
+                    <circle cx="175" cy="85" r="15" /><text x="175" y="85" fill="#263238">2</text>
+                    <circle cx="525" cy="85" r="15" /><text x="525" y="85" fill="#263238">3</text>
+                    <circle cx="90" cy="145" r="15" /><text x="90" y="145" fill="#263238">4</text>
+                    <circle cx="260" cy="145" r="15" /><text x="260" y="145" fill="#263238">5</text>
+                    <circle cx="440" cy="145" r="15" /><text x="440" y="145" fill="#263238">6</text>
+                    <circle cx="610" cy="145" r="15" /><text x="610" y="145" fill="#263238">7</text>
+                    <circle cx="50" cy="215" r="15" /><text x="50" y="215" fill="#263238">8</text>
+                    <circle cx="130" cy="215" r="15" /><text x="130" y="215" fill="#263238">9</text>
+                    <circle cx="220" cy="215" r="15" /><text x="220" y="215" fill="#263238">10</text>
+                    <circle cx="300" cy="215" r="15" /><text x="300" y="215" fill="#263238">11</text>
+                    <circle cx="400" cy="215" r="15" /><text x="400" y="215" fill="#263238">12</text>
+                    <circle cx="480" cy="215" r="15" /><text x="480" y="215" fill="#263238">13</text>
+                    <circle cx="570" cy="215" r="15" /><text x="570" y="215" fill="#263238">14</text>
+                    <circle cx="650" cy="215" r="15" /><text x="650" y="215" fill="#263238">15</text>
+                </g>
+            </svg>
+        </div>
+
+        <h3>d. Recorridos del árbol binario (6 en total)</h3>
+        <p>Efectuamos el procesamiento e indexación de los servidores aplicando los seis algoritmos sistemáticos de exploración profunda y horizontal:</p>
+        
+        <ol>
+            <li><strong>Preorden (Raíz → Izquierda → Derecha):</strong> <br>1, 2, 4, 8, 9, 5, 10, 11, 3, 6, 12, 13, 7, 14, 15</li>
+            <li><strong>Inorden (Izquierda → Raíz → Derecha):</strong> <br>8, 4, 9, 2, 10, 5, 11, 1, 12, 6, 13, 3, 14, 7, 15</li>
+            <li><strong>Postorden (Izquierda → Derecha → Raíz):</strong> <br>8, 9, 4, 10, 11, 5, 2, 12, 13, 6, 14, 15, 7, 3, 1</li>
+            <li><strong>Por Niveles / Amplitud (Orden Horizontal):</strong> <br>1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15</li>
+            <li><strong>Preorden Inverso (Raíz → Derecha → Izquierda):</strong> <br>1, 3, 7, 15, 14, 6, 13, 12, 2, 5, 11, 10, 4, 9, 8</li>
     </article>
 </body>
 </html>
