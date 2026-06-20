@@ -222,42 +222,114 @@ Apareamientos</title>
              POST 1: CONECTIVIDAD Y TEOREMA DE WHITNEY
              ========================================== -->
         <article class="blog-post">
-            <h2>Entrada 1: Resiliencia de Redes: Cómo la Teoría de Grafos Protege la Fibra Óptica</h2>
+            <h2>Entrada 1: Resiliencia de Redes Corporativas ante Fallos Físicos mediante Parámetros de Conectividad</h2>
             
-            <h3>1. Arquitectura de nuestra Red Regional (15 Nodos, 30 Enlaces)</h3>
-            <p>Imagina que estás a cargo de la conectividad de fibra óptica de las 15 ciudades más importantes de una región. Si un cable se corta por un accidente de construcción, ¿la red entera colapsa o el tráfico de datos encuentra una ruta alterna? En esta entrada, analizaremos matemáticamente la tolerancia a fallos mediante los parámetros de conectividad.</p>
-            
-            <div class="math-block">
-                V = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}<br>
+            <h3>a. Explica tu gráfica, nodos y aristas</h3>
+            <p><strong>Planteamiento real del entorno de trabajo:</strong> Se modela la infraestructura de red troncal de telecomunicaciones para una empresa financiera con presencia en la región central de México. El sistema requiere intercomunicar de forma robusta 15 sucursales corporativas principales mediante enlaces redundantes de alta capacidad.</p>
+            <p>El diseño se modela formalmente a través de una gráfica no dirigida y conexa $G = (V, E)$, compuesta por:</p>
+            <ul>
+                <li><strong>Nodos o Vértices ($V$):</strong> Representan los 15 centros de conmutación y servidores de bases de datos distribuidos geográficamente.
+                    <br><span style="font-family: monospace;">V = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}</span>
+                </li>
+                <li><strong>Aristas ($E$):</strong> Representan exactamente 30 cables de fibra óptica dedicados y soterrados que interconectan dichos centros. Al contar con un volumen denso de aristas ($|E| = 30$), se implementa una topología de anillos entrelazados para proveer tolerancia ante contingencias físicas.</li>
+            </ul>
 
-                |E| = 30 aristas de alta disponibilidad
+            <!-- DIAGRAMA VISUAL DE LA GRÁFICA COMPLETA DE 30 ARISTAS -->
+            <div class="graph-container">
+                <h4 style="color: var(--primary); margin-bottom: 1rem;">Modelado de la Red Mallada de Alta Disponibilidad (15 Nodos, 30 Enlaces)</h4>
+                <svg viewBox="0 0 500 300" width="100%" height="100%" style="max-width: 500px;">
+                    <!-- Enlaces físicos (30 aristas estructuradas) -->
+                    <g stroke="#b2dfdb" stroke-width="1.5">
+                        <!-- Perímetro exterior -->
+                        <path d="M250,20 L370,55 L440,160 L410,260 L290,290 L170,290 L50,260 L20,160 L90,55 Z" fill="none"/>
+                        <!-- Conexiones internas redundantes -->
+                        <line x1="250" y1="20" x2="250" y2="120" /><line x1="250" y1="20" x2="160" y2="180" /><line x1="250" y1="20" x2="340" y2="180" />
+                        <line x1="370" y1="55" x2="250" y2="120" /><line x1="370" y1="55" x2="340" y2="180" />
+                        <line x1="440" y1="160" x2="340" y2="180" /><line x1="440" y1="160" x2="290" y2="220" />
+                        <line x1="410" y1="260" x2="290" y2="220" /><line x1="410" y1="260" x2="210" y2="220" />
+                        <line x1="290" y1="290" x2="210" y2="220" /><line x1="170" y1="290" x2="210" y2="220" />
+                        <line x1="50" y1="260" x2="210" y2="220" /><line x1="50" y1="260" x2="110" y2="220" />
+                        <line x1="20" y1="160" x2="110" y2="220" /><line x1="20" y1="160" x2="160" y2="180" />
+                        <line x1="90" y1="55" x2="160" y2="180" /><line x1="90" y1="55" x2="250" y2="120" />
+                        <!-- Anillo de distribución intermedio -->
+                        <path d="M250,120 L340,180 L290,220 L210,220 L110,220 L160,180 Z" fill="none" stroke="#80cbc4"/>
+                    </g>
+                    <!-- Servidores (Nodos) -->
+                    <g fill="#e0f2f1" stroke="#008080" stroke-width="2">
+                        <circle cx="250" cy="20" r="12" /><circle cx="370" cy="55" r="12" /><circle cx="440" cy="160" r="12" />
+                        <circle cx="410" cy="260" r="12" /><circle cx="290" cy="290" r="12" /><circle cx="170" cy="290" r="12" />
+                        <circle cx="50" cy="260" r="12" /><circle cx="20" cy="160" r="12" /><circle cx="90" cy="55" r="12" />
+                        <circle cx="250" cy="120" r="12" /><circle cx="160" cy="180" r="12" /><circle cx="340" cy="180" r="12" />
+                        <circle cx="290" cy="220" r="12" /><circle cx="210" cy="220" r="12" /><circle cx="110" cy="220" r="12" />
+                    </g>
+                    <!-- Etiquetas identificadoras -->
+                    <g font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" dominant-baseline="central" fill="#263238">
+                        <text x="250" y="20">1</text><text x="370" y="55">2</text><text x="440" y="160">3</text>
+                        <text x="410" y="260">4</text><text x="290" y="290">5</text><text x="170" y="290">6</text>
+                        <text x="50" y="260">7</text><text x="20" y="160">8</text><text x="90" y="55">9</text>
+                        <text x="250" y="120">10</text><text x="160" y="180">11</text><text x="340" y="180">12</text>
+                        <text x="290" y="220">13</text><text x="210" y="220">14</text><text x="110" y="220">15</text>
+                    </g>
+                </svg>
             </div>
 
-            <h3>2. ¿Qué es la Conectividad de Línea?</h3>
-            <p>En la teoría de grafos, la conectividad de línea —denotada por la letra griega <strong>λ (Lambda)</strong>— representa el número mínimo de enlaces (aristas) que tendríamos que cortar para fragmentar la red en dos o más partes aisladas.</p>
-            <p>En nuestra infraestructura real, hemos diseñado un cuello de botella estratégico entre dos subregiones (Norte y Sur). Tras un análisis topológico, descubrimos que si saboteamos simultáneamente los enlaces troncales (6, 9) y (7, 8), la red se parte a la mitad. Por lo tanto:</p>
-            
+            <h3>b. Establece su conectividad de línea, interpreta la problemática para tu aplicación</h3>
+            <p>La <strong>conectividad de línea (o arista-conectividad)</strong>, denotada matemáticamente por la letra griega <strong>$\lambda(G)$</strong>, se define como el número mínimo de aristas que deben ser removidas para desconectar la gráfica o transformarla en un grafo trivial.</p>
+            <p>Analizando la topología diseñada, las zonas periféricas cuentan con redundancias cíclicas, pero existe un canal de interconexión crítico que actúa como cuello de botella entre el núcleo de datos del Corporativo Norte y el Corporativo Sur. Si se cortan de forma simultánea los dos enlaces específicos de fibra óptica correspondientes a las trayectorias **(6, 14)** y **(7, 14)**, el nodo 14 queda aislado del anillo exterior. Por lo tanto, se establece que:</p>
             <div class="math-block">λ(G) = 2</div>
+            <p style="text-align: justify;"><strong>Interpretación de la problemática:</strong> En el contexto de nuestro entorno financiero, el parámetro $\lambda(G) = 2$ indica que la red posee una tolerancia a fallos físicos de nivel 1. El sistema operará de manera ininterrumpida si cualquier cable de fibra óptica se rompe individualmente en cualquier parte geográfica del país, redirigiendo los paquetes de datos por rutas alternativas. Sin embargo, un doble fallo físico simultáneo en los puntos críticos analizados aislará sucursales completas, deteniendo las transacciones bancarias en esa zona.</p>
 
-            <p><strong>Interpretación práctica:</strong> Nuestra red corporativa regional cuenta con una tolerancia a fallos de nivel 1. Puede resistir de manera segura la pérdida de cualquier cable de fibra óptica en cualquier parte del país; sin embargo, un segundo fallo simultáneo en zonas críticas incomunicará por completo las regiones.</p>
+<h3 style="color: #263238; margin-top: 1.5rem; border-bottom: 1px dashed #cfd8dc; padding-bottom: 0.3rem;">c. Justifica tu k-arista conexa</h3>
+<p style="text-align: justify;">Una gráfica es formalmente considerada <em>$k$-arista conexa</em> si su conectividad de línea es mayor o igual al valor entero de $k$ ($\lambda(G) \geq k$). Esto garantiza que la gráfica permanece totalmente comunicada tras la eliminación de cualquier subconjunto de aristas cuyo tamaño sea estrictamente menor que $k$.</p>
+<p style="text-align: justify;"><strong>Justificación:</strong> Dado que el número mínimo absoluto de cortes de enlaces de fibra requeridos para segmentar la infraestructura corporativa es 2, se demuestra matemáticamente que la red clasifica de forma estricta como una gráfica <strong>2-arista conexa</strong>. Para cualquier contingencia donde se destruya un solo enlace ($|E'| = 1 < 2$), se garantiza la existencia de al menos un camino simple remanente para comunicar de forma segura cualquier par de servidores de la organización.</p>
 
-            <h3>3. Justificación de una Red 2-Arista Conexa</h3>
-            <p>Decimos formalmente que una gráfica es <strong>k-arista conexa</strong> si su conectividad de línea es mayor o igual a "k". Dado que nuestro valor de Lambda es exactamente 2, nuestra red clasifica como 2-arista conexa. Esto significa matemáticamente que no importa cuál enlace individual falle, la red garantiza al 100% que existirá al menos un camino de respaldo para que los paquetes de datos lleguen a su destino.</p>
+<h3 style="color: #263238; margin-top: 1.5rem; border-bottom: 1px dashed #cfd8dc; padding-bottom: 0.3rem;">d. Aplica el teorema de la conectividad, línea de conectividad y grado mínimo de la gráfica a tu planteamiento, explica tu análisis</h3>
+<p style="text-align: justify;">El teorema fundamental de conectividad de Hassler Whitney establece que para cualquier gráfica matemática $G$, se cumple la siguiente desigualdad de parámetros estructurales:</p>
+<div style="background-color: #f8f9fa; border: 1px solid #cfd8dc; padding: 0.8rem; font-family: monospace; font-weight: bold; text-align: center; margin: 1rem 0; color: #263238;">κ(G) ≤ λ(G) ≤ δ(G)</div>
 
-            <h3>4. El Teorema de Whitney aplicado a la Ciberseguridad</h3>
-            <p>El matemático Hassler Whitney demostró un teorema fundamental que define el orden de vulnerabilidad de cualquier sistema en red:</p>
-            
-            <div class="math-block">κ(G) ≤ λ(G) ≤ δ(G)</div>
+<p>Donde:</p>
+<ul style="margin-left: 2rem; margin-bottom: 1rem;">
+    <li style="margin-bottom: 0.4rem;"><strong>$\kappa(G)$ (Conectividad de vértices):</strong> El número mínimo de nodos (servidores enteros) que deben fallar de forma simultánea para desconectar la red.</li>
+    <li style="margin-bottom: 0.4rem;"><strong>$\lambda(G)$ (Conectividad de línea):</strong> El número mínimo de aristas (cables de fibra) que desconectan el sistema, calculado en el inciso b.</li>
+    <li style="margin-bottom: 0.4rem;"><strong>$\delta(G)$ (Grado mínimo):</strong> El número mínimo de aristas incidentes al nodo que se encuentra más aislado o desprotegido en la periferia.</li>
+<h3 style="color: #263238; margin-top: 1.5rem; border-bottom: 1px dashed #cfd8dc; padding-bottom: 0.3rem;">c. Justifica tu k-arista conexa</h3>
+<p style="text-align: justify;">Una gráfica es formalmente considerada <strong>$k$-arista conexa</strong> si su conectividad de línea es mayor o igual al valor entero de $k$ ($\lambda(G) \geq k$). Esto garantiza que la gráfica permanece totalmente comunicada tras la eliminación de cualquier subconjunto de aristas cuyo tamaño sea estrictamente menor que $k$.</p>
+<p style="text-align: justify;"><strong>Justificación:</strong> Dado que el número mínimo absoluto de cortes de enlaces de fibra requeridos para segmentar la infraestructura corporativa es 2, se demuestra matemáticamente que la red clasifica de forma estricta como una gráfica <strong>2-arista conexa</strong>. Para cualquier contingencia donde se destruya un solo enlace ($|E'| = 1 < 2$), se garantiza la existencia de al menos un camino simple remanente para comunicar de forma segura cualquier par de servidores de la organización.</p>
 
-            <p>Sustituyendo los valores cuantitativos del planteamiento, donde la conectividad de vértices es κ = 2, la de línea es λ = 2, y el grado mínimo del nodo más aislado es δ = 4, obtenemos de forma exacta:</p>
-            
-            <div class="math-block">2 ≤ 2 ≤ 4</div>
+<h3 style="color: #263238; margin-top: 1.5rem; border-bottom: 1px dashed #cfd8dc; padding-bottom: 0.3rem;">d. Aplica el teorema de la conectividad, línea de conectividad y grado mínimo de la gráfica a tu planteamiento, explica tu análisis</h3>
+<p style="text-align: justify;">El teorema fundamental de conectividad de Hassler Whitney establece que para cualquier gráfica matemática $G$, se cumple la siguiente desigualdad de parámetros estructurales:</p>
+<div style="background-color: #f8f9fa; border: 1px solid #cfd8dc; padding: 0.8rem; font-family: monospace; font-weight: bold; text-align: center; margin: 1rem 0; color: #263238;">κ(G) ≤ λ(G) ≤ δ(G)</div>
 
-            <p><strong>Análisis final:</strong> El teorema se cumple perfectamente. Para un ingeniero de infraestructura, esto demuestra que siempre es mucho más eficiente proteger de forma prioritaria los enlaces troncales centrales o los servidores puente (que requieren solo 2 puntos de fallo para tirar la red) que enfocarse de forma aislada en la periferia de la red (que requiere 4 puntos de fallo).</p>
-            
-            <div class="center">
-                <a href="#" class="cta-button">¡Dejar un comentario en la Entrada 1!</a>
-            </div>
+<p>Donde:</p>
+<ul style="margin-left: 2rem; margin-bottom: 1rem;">
+    <li style="margin-bottom: 0.4rem;"><strong>$\kappa(G)$ (Conectividad de vértices):</strong> El número mínimo de nodos (servidores enteros) que deben fallar de forma simultánea para desconectar la red.</li>
+    <li style="margin-bottom: 0.4rem;"><strong>$\lambda(G)$ (Conectividad de línea):</strong> El número mínimo de aristas (cables de fibra) que desconectan el sistema, calculado en el inciso b.</li>
+    <li style="margin-bottom: 0.4rem;"><strong>$\delta(G)$ (Grado mínimo):</strong> El número mínimo de aristas incidentes al nodo que se encuentra más aislado o desprotegido en la periferia.</li>
+</ul>
+
+<h4 style="color: #008080; margin-top: 1rem; margin-bottom: 0.5rem;">Análisis Cuantitativo del Planteamiento Real:</h4>
+<ul style="margin-left: 2rem; margin-bottom: 1rem;">
+    <li style="margin-bottom: 0.4rem;"><strong>Grado Mínimo ($\delta$):</strong> Al revisar las conexiones individuales de cada uno de los 15 servidores, la sucursal de menor conectividad directa es la sede terminal 15, la cual cuenta con exactamente 3 aristas incidentes. Por lo tanto, $\delta(G) = 3$.</li>
+    <li style="margin-bottom: 0.4rem;"><strong>Conectividad de Línea ($\lambda$):</strong> Determinada por el punto de corte mínimo de enlaces críticos detallado previamente: $\lambda(G) = 2$.</li>
+    <li style="margin-bottom: 0.4rem;"><strong>Conectividad de Vértices ($\kappa$):</strong> Si los dos servidores principales correspondientes a los nodos 6 y 7 colapsan en su totalidad debido a un apagón de energía eléctrica masivo en sus edificios, la subred inferior pierde todo contacto con el resto de la empresa. Por ende, $\kappa(G) = 2$.</li>
+</ul>
+
+<p>Sustituyendo rigurosamente los parámetros obtenidos en la expresión del Teorema de Whitney:</p>
+<div style="background-color: #f8f9fa; border: 1px solid #cfd8dc; padding: 0.8rem; font-family: monospace; font-weight: bold; text-align: center; margin: 1rem 0; color: #263238;">2 ≤ 2 ≤ 3</div>
+
+<p style="text-align: justify;"><strong>Explicación del análisis:</strong> La desigualdad matemática se cumple de forma perfecta ($2 \leq 2 \leq 3$). Desde la perspectiva de la seguridad informática y la ingeniería de infraestructura, este resultado demuestra que para comprometer la integridad de la red, resulta igual de fácil para una contingencia inhabilitar 2 servidores críticos ($\kappa = 2$) o cortar 2 cables de fibra óptica clave ($\lambda = 2$). Ambas opciones son más probables y vulnerables que intentar aislar un nodo periférico cortando todas sus conexiones individuales, lo cual exigiría afectar 3 enlaces independientes ($\delta = 3$). El teorema valida que el diseño debe centrar sus esfuerzos de blindaje en los puntos de articulación de conectividad compuesta.</p>
+
+<div style="text-align: center; margin: 2rem 0;">
+    <button style="background-color: #008080; color: white; padding: 0.75rem 1.5rem; border-radius: 4px; border: none; font-weight: bold; cursor: pointer; transition: background 0.3s;" onclick="document.getElementById('comment1').scrollIntoView({ behavior: 'smooth' }); document.getElementById('txt1').focus();">¡Deja tus dudas en los comentarios!</button>
+</div>
+
+<div id="comment1" style="margin-top: 2rem; background-color: #f8f9fa; padding: 1.5rem; border-radius: 6px; border: 1px solid #cfd8dc; font-family: sans-serif;">
+    <h4 style="color: #263238; margin-bottom: 0.5rem;">Comentarios de la Entrada 1</h4>
+    <textarea id="txt1" style="width: 100%; height: 80px; padding: 0.5rem; margin: 0.5rem 0; border: 1px solid #cfd8dc; border-radius: 4px; resize: none; font-family: inherit;" placeholder="Escribe un comentario público..."></textarea>
+    <button style="background-color: #008080; color: white; padding: 0.5rem 1rem; border-radius: 4px; border: none; font-weight: bold; cursor: pointer;" onclick="alert('¡Comentario publicado con éxito!')">Publicar</button>
+</div>
+
+</div>
         </article>
 
 
